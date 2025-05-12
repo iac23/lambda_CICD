@@ -22,8 +22,13 @@ jobs:
 # Installs any packages
       - name: Install Dependencies
         run: |
-          pip install --upgrade pip
-          pip install -r lambda/requirements.txt -t lambda/
+           python -m pip install --upgrade
+           pip install -r lambda/requirements.txt -t lambda/
+        shell: /usr/bin/bash -e {0}
+        env:
+            pythonLocation: /opt/hostedtoolcache/Python/3.13.3/x64
+            LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.3/x64/lib
+          
 
 # Sets up AWS Credentials
       - name: Configure AWS Creds
