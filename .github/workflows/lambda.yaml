@@ -22,6 +22,7 @@ jobs:
 # Installs any packages
       - name: Install Dependencies
         run: |
+          pip install --upgrade pip
           pip install -r lambda/requirements.txt -t lambda/
 
 # Sets up AWS Credentials
