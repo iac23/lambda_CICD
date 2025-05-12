@@ -23,7 +23,7 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r lambda_CICD/lambda/requirements.txt -t lambda/
+          pip install -r lambda/requirements.txt -t lambda/
         
 # Sets up AWS Credentials
       - name: Configure AWS Creds
