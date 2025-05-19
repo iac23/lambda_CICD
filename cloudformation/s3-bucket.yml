@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'S3 bucket with environment tagging'
+Description: 'S3 bucket for CICD PR'
 
 Parameters:
   Environment:
@@ -14,12 +14,12 @@ Resources:
   MyS3Bucket:
     Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName: !Sub '${AWS::StackName}-test-bucket'
+      BucketName: !Sub '${AWS::StackName}-${Environment}-bucket'
       Tags:
         - Key: Environment
           Value: !Ref Environment
         - Key: Purpose
-          Value: GithubActionsTesting
+          Value: GitHubActionsTesting
 
   Outputs:
     BucketName:
