@@ -28,13 +28,8 @@ jobs:
 
       - name: Deploy our stack
         run: |
-<<<<<<< HEAD
-                stack_name="pr-test-stack-${{github.event.pull_request.number}}"
-                aws cloudformation create-stack --stack-name $stack_name --template-body file://cloudformation/s3-bucket.yml --parameters ParametersKey=Environment, ParameterValue=test
-=======
           stack_name="pr-test-stack-${{github.event.pull_request.number}}"
           aws cloudformation create-stack --stack-name $stack_name --template-body file://cloudformation/s3-bucket.yml --parameters ParametersKey=Environment, ParameterValue=test
->>>>>>> origin/main
 
       - name: Comment on the PR
         uses: actions/github-script@v6
@@ -60,11 +55,6 @@ jobs:
 
       - name: Delete Test Stack
         run: |
-<<<<<<< HEAD
-          stack_name='pr-test-stack-${{ github.event.pull_request.number }}'
-          aws cloudformation delete stack --stack-name $stack_name
-=======
                 stack_name='pr-test-stack-${{ github.event.pull_request.number }}'
                 aws cloudformation delete stack --stack-name $stack_name
->>>>>>> origin/main
                 
