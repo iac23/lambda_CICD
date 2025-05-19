@@ -24,5 +24,5 @@ Resources:
   Outputs:
     BucketName:
       Value: !Ref MyS3Bucket
-      Description: 'Name of created S3 bucket'
+      Description: 'Name of cloudformation created S3 bucket'
       
