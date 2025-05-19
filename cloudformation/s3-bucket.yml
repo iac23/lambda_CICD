@@ -21,6 +21,8 @@ Resources:
           Value: !Ref Environment
         - Key: Environment
           Value: GitHubActionsTesting
+        - Key: Owner
+          Value: CloudTeam
 
   Outputs:
     BucketName:
