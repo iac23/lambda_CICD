@@ -10,7 +10,6 @@ Parameters:
       - staging
       - production
 
-# S3 Test Bucket using CloudFormation
 Resources:
   MyS3Bucket:
     Type: 'AWS::S3::Bucket'
@@ -19,7 +18,7 @@ Resources:
       Tags:
         - Key: Environment
           Value: !Ref Environment
-        - Key: Purpose
+        - Key: Environment
           Value: GitHubActionsTesting
 
   Outputs:
