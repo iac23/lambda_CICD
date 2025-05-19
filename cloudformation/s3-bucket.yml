@@ -19,10 +19,8 @@ Resources:
       Tags:
         - Key: Environment
           Value: !Ref Environment
-        - Key: Environment
+        - Key: Purpose
           Value: GitHubActionsTesting
-        - Key: Owner
-          Value: CloudTeam
 
   Outputs:
     BucketName:
