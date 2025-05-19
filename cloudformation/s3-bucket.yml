@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'S3 Bucket for CICD PR'
+Description: 'S3 Bucket for my CICD PR'
 
 Parameters:
   Environment:
@@ -18,10 +18,11 @@ Resources:
       Tags:
         - Key: Environment
           Value: !Ref Environment
-        - Key: Environment
+        - Key: Project
           Value: GitHubActionsTesting
 
   Outputs:
     BucketName:
-      Description: 'Name of created S3 bucket'
       Value: !Ref MyS3Bucket
+      Description: 'Name of created S3 bucket'
+      
