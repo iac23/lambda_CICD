@@ -14,11 +14,11 @@ Resources:
   MyS3Bucket:
     Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName: pr-test-stack-test-bucket
+      BucketName: test-bucket-123
       Tags:
         - Key: Environment
           Value: !Ref Environment
-        - Key: Project
+        - Key: Purpose
           Value: GithubActionsTesting
 
   Outputs:
