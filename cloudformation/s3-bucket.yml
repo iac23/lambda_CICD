@@ -14,7 +14,7 @@ Resources:
   MyS3Bucket:
     Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName: test-bucket-123
+      BucketName: !Sub '${AWS::StackName}-test-bucket'
       Tags:
         - Key: Environment
           Value: !Ref Environment
