@@ -25,4 +25,3 @@ Resources:
     BucketName:
       Value: !Ref MyS3Bucket
       Description: 'Name of the created S3 bucket
-      
