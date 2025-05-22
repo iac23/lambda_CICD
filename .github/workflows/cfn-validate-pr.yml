@@ -4,6 +4,11 @@ on:
   pull_request:
     paths:
       - 'cloudformation/**'
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - closed
 
 permissions:
   pull-requests: write
@@ -11,6 +16,7 @@ permissions:
 
 jobs:
   validate-cfn:
+    if: github.event.action != 'closed'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -30,8 +36,10 @@ jobs:
         run: |
           stack_name="pullrq-test-stack-${{github.event.pull_request.number}}"
           aws cloudformation create-stack --stack-name $stack_name --template-body file://cloudformation/s3-bucket.yml --parameters ParameterKey=Environment,ParameterValue=test
+        continue-on-error: false
 
       - name: Comment on the PR
+        if: success()
         uses: actions/github-script@v6
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
@@ -44,7 +52,7 @@ jobs:
                         })
   cleanup-on-merge:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
+    if: github.event.action == 'closed' && github.event.pull_request.merged == true
     steps:
       - name: configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
