@@ -5,15 +5,16 @@ on:
     paths:
       - 'cloudformation/**'
     types:
-      - opened
-      - synchronize
-      - reopened
-      - closed
+      - opened  # Will trigger when new pull is created
+      - synchronize # Trigger when pull is updated
+      - reopened  # Trigger when closed pull is reopened
+      - closed  # Trigger when pull is closed (for cleanup only)
 
 permissions:
   pull-requests: write
   contents: read
 
+# Skip deployment if pull is closed
 jobs:
   validate-cfn:
     if: github.event.action != 'closed'
@@ -36,7 +37,7 @@ jobs:
         run: |
           stack_name="pullrq-test-stack-${{github.event.pull_request.number}}"
           aws cloudformation create-stack --stack-name $stack_name --template-body file://cloudformation/s3-bucket.yml --parameters ParameterKey=Environment,ParameterValue=test
-        continue-on-error: false
+        continue-on-error: false  # this ensures errors prevent further steps from running
 
       - name: Comment on the PR
         if: success()
