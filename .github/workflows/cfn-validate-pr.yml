@@ -1,4 +1,4 @@
-name: Validate CloudFormation on my PR
+name: Validate my CloudFormation on PR
 
 on:
   pull_request:
